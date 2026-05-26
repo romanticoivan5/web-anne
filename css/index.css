@@ -38,11 +38,13 @@
   height: 100vh;
   text-shadow: 0 0 20px white;
   letter-spacing: 0px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 @media (min-width: 500px) {
   .title {
-    letter-spacing: 20px;
+    letter-spacing: 0px;
   }
 }
 
@@ -67,10 +69,60 @@ a {
   text-decoration: none;
 }
 
+.composer {
+  position: absolute;
+  left: 50%;
+  bottom: 7vh;
+  z-index: 2;
+  width: calc(100vw - 64px);
+  max-width: 430px;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(10, 10, 18, 0.72);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.composer label {
+  color: #ffffff;
+  font: 700 0.86rem 'Courier New', Courier, monospace;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.composer textarea,
+.composer input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  padding: 12px 13px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1620;
+  font: 500 0.95rem Arial, sans-serif;
+  outline: none;
+}
+
+.composer textarea {
+  resize: vertical;
+  min-height: 98px;
+  max-height: 160px;
+}
+
+.composer textarea:focus,
+.composer input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
 .btn {
   border: none;
-  width: 15em;
-  height: 5em;
+  width: 100%;
+  min-height: 4.4em;
   border-radius: 3em;
   display: flex;
   justify-content: center;
@@ -108,4 +160,15 @@ a {
 .btn:hover .sparkle {
   fill: white;
   transform: scale(1.2);
+}
+
+@media (max-height: 680px) {
+  .title {
+    align-content: flex-start;
+    padding-top: 8vh;
+  }
+
+  .composer {
+    bottom: 4vh;
+  }
 }
